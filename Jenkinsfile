@@ -7,7 +7,7 @@ pipeline {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
-                    args '--user node -m 2g --cpus=1'
+                    args '-m 2g --cpus=1'
                 }
             }
             environment {
