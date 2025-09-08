@@ -3,18 +3,6 @@ pipeline {
 
     stages {
 
-        stage("Test"){
-            steps{
-                sh '''
-                    echo "Stage test"
-                    echo "Testam daca avem fisierul index.html"
-                    find build/index.html
-                    echo "Rulam testele scrise de dev"
-                    npm run test
-                '''
-            }
-        }
-
         stage("Build"){
             agent {
                 docker {
@@ -36,6 +24,18 @@ pipeline {
                     npm install --prefer-offline
                     npm run build
                     ls -la
+                '''
+            }
+        }
+
+        stage("Test"){
+            steps{
+                sh '''
+                    echo "Stage test"
+                    echo "Testam daca avem fisierul index.html"
+                    find build/index.html
+                    echo "Rulam testele scrise de dev"
+                    npm run test
                 '''
             }
         }
