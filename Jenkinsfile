@@ -8,12 +8,12 @@ pipeline {
     }
 
     stages {
-         agent {
-        docker {
-            image 'node:18-alpine'
-            args '-m 3g --cpus=2'
-        }
-    }
+        agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
         stage("Build") {
             steps {
                 sh '''
@@ -25,12 +25,12 @@ pipeline {
         }
 
         stage("Test") {
-             agent {
-        docker {
-            image 'node:18-alpine'
-            args '-m 3g --cpus=2'
-        }
-    }
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
                     echo "Verificam index.html"
