@@ -8,13 +8,14 @@ pipeline {
     }
 
     stages {
-        agent {
+        
+        stage("Build") {
+            agent {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
                 }
             }
-        stage("Build") {
             steps {
                 sh '''
                     rm -rf node_modules package-lock.json
